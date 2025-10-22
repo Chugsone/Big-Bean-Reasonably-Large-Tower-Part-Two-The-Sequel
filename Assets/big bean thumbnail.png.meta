@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      big bean thumbnail_0: 7251215562165576293
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

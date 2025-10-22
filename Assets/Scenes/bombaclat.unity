@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 182440389}
 --- !u!114 &1425854391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553683a64ab85f642a4a0ea5ec10df49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  jumpheight: 0
+  speed: 15
+  jumpheight: 8
   rb2d: {fileID: 1425854393}
 --- !u!61 &1425854392
 BoxCollider2D:
