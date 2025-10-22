@@ -6,14 +6,14 @@ public class PlatformerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpHeight;
 
-    public Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
 
     private float movement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,8 +30,8 @@ public class PlatformerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
+        if (ctx.ReadValue<float>() == 1)
+
         rb2d.linearVelocityY = jumpHeight;
     }
-
-
 }
