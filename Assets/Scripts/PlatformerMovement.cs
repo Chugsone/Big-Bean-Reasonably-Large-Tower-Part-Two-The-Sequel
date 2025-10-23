@@ -11,13 +11,6 @@ public class PlatformerMovement : MonoBehaviour
     private float movement;
     public Animator anim;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         rb2d.linearVelocityX = movement;
@@ -31,6 +24,8 @@ public class PlatformerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-
+        rb2d.AddForceY(jumpHeight);
+        anim.SetTrigger("Jump");
+        if (ctx.canceled) return;
     }
 }
