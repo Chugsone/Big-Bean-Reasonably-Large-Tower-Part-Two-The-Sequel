@@ -6,7 +6,7 @@ public class PlatformerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpHeight;
 
-    private Rigidbody2D rb2d;
+    [SerializeField] private Rigidbody2D rb2d;
 
     private float movement;
     public Animator anim;
