@@ -498,8 +498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553683a64ab85f642a4a0ea5ec10df49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpHeight: 10
+  speed: 5
+  JumpHeight: 5
+  boxsize: {x: 1, y: 2}
+  castDistance: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerObj: {fileID: 0}
 --- !u!61 &1425854392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -670,7 +676,7 @@ GameObject:
   - component: {fileID: 1791195298}
   - component: {fileID: 1791195297}
   - component: {fileID: 1791195296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
