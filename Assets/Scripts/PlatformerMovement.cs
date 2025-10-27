@@ -30,13 +30,11 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Reset();
-        }
-
         Rb.linearVelocityX = _movement;
     }
+
+
+
     // Crontrolls the players horizontal movment
     public void Move(InputAction.CallbackContext ctx)
     {
