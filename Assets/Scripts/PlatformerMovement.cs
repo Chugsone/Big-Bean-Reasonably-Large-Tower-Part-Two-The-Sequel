@@ -27,8 +27,13 @@ public class PlayerMovment : MonoBehaviour
     // grabs initial rotation
     private Quaternion InitialRot;
 
+<<<<<<< HEAD
     public bool isDashing;
 
+=======
+    //
+    [SerializeField] private Animator _playerAnimator;
+>>>>>>> 87b15e2d511a0c83666a72c97b85f4212e7c024f
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -93,6 +98,7 @@ public class PlayerMovment : MonoBehaviour
     {
 
         _movement = ctx.ReadValue<Vector2>().x * speed;
+        _playerAnimator.SetFloat("HorizontalSpeed", Mathf.Abs(_movement));
 
         if (_movement != 0)
             direction = Mathf.Sign(_movement);
