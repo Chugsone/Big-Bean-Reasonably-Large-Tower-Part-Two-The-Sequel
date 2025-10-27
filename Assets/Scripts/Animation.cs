@@ -1,16 +1,33 @@
 using UnityEngine;
 
-public class Animations : MonoBehaviour
+public class Animation : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Animator animator;
+    private float moveSpeed = 5f;
+
     void Start()
     {
-        
-    }
+        animator = GetComponent<Animator>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Update()
+        {
+            // Might want to check with out movement script.
+            float horizontalInput = Input.GetAxis("Horizontal");
+
+            transform.position += new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0, 0);
+
+            animator.SetFloat("HorizontalSpeed", horizontalInput);
+
+            if (horizontalInput < 0)
+            {
+                //Left
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (horizontalInput > 0)
+            {
+                //Right
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
     }
 }

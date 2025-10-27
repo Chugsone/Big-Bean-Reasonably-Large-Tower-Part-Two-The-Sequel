@@ -20,6 +20,8 @@ public class PlayerMovment : MonoBehaviour
     // grabs initial rotation
     private Quaternion InitialRot;
 
+    //
+    [SerializeField] private Animator _playerAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -42,6 +44,7 @@ public class PlayerMovment : MonoBehaviour
     {
 
         _movement = ctx.ReadValue<Vector2>().x * speed;
+        _playerAnimator.SetFloat("HorizontalSpeed", Mathf.Abs(_movement));
 
     }
     // Controlls the players jump and makes sure the player is grounded
