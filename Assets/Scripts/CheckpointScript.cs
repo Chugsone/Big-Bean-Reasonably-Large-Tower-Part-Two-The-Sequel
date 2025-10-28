@@ -6,11 +6,13 @@ public class CheckpointScript : MonoBehaviour
 {
     private RespawnScript respawn;
     private BoxCollider2D checkPointCollider;
+    private PolygonCollider2D checkPointPolygonCollider;
 
 
     private void Awake()
     {
         checkPointCollider = GetComponent<BoxCollider2D>();
+        checkPointPolygonCollider = GetComponent<PolygonCollider2D>();
         respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<RespawnScript>();
     }
 
