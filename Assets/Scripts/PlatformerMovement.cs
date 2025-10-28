@@ -20,6 +20,7 @@ public class PlayerMovment : MonoBehaviour
     public float dashTime;
     public GameObject dashEffect;
     public float dashCooldown;
+    public bool HasDoubleJump = true;
 
     // grabs inital position
     private Vector2 InitialPos;
@@ -120,7 +121,16 @@ public class PlayerMovment : MonoBehaviour
             {
                 Rb.linearVelocityY = JumpHeight;
             }
+            if (!IsGrounded())
+            {
+                if (HasDoubleJump ==true) 
+    {
+        Rb.linearVelocityY = JumpHeight;
+        HasDoubleJump = false;
+    }
+            }
         }
+
 
 
 
@@ -131,7 +141,9 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxsize, 0, -transform.up, castDistance, groundLayer))
         {
+            HasDoubleJump = true;
             return true;
+            
         }
         else
         {
