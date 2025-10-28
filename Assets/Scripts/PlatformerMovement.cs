@@ -46,37 +46,53 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
-        if (isDashing==false)
+
+
+        if (isDashing == false)
         {
             //StartCoroutine(DelayedActionCoroutine(3.0f));
-            
+
             Rb.linearVelocityX = _movement;
             dashEffect.SetActive(false);
 
         }
-        if (isDashing==true)
+        if (isDashing == true)
         {
-            
+
             dashEffect.SetActive(true);
         }
 
-        
+
 
 
         if (Input.GetKeyDown(KeyCode.Q) && !isDashing)
         {
-            Rb.AddForce (new Vector2(dashForce*direction, 0f));
+            Rb.AddForce(new Vector2(dashForce * direction, 0f));
             isDashing = true;
 
             Invoke(nameof(EndDash), dashTime);
+            if (direction == 1)
+            {
+                dashEffect.transform.localPosition = new Vector3(-0.5f, -0.5f, 0f);
+                dashEffect.transform.rotation = Quaternion.Euler(0f, 0f, 135f);
+            }
+            else
+            {
+                dashEffect.transform.localPosition = new Vector3(0.5f, -0.5f, 0f);
+                dashEffect.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
+            }
         }
     }
+        
+
+         
 
     private void DashCooldown(float coolDown)
     {
-
+        if (isDashing == false)
+        {
+            
+        }
     }
 
     private void EndDash()
@@ -122,6 +138,10 @@ public class PlayerMovment : MonoBehaviour
             return false;
         }
     }
+
+    
+
+    
 
     // Draw the boxcast in unity
     private void OnDrawGizmos()
