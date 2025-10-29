@@ -6,12 +6,13 @@ using System.Collections;
 using Unity.VisualScripting;
 public class PlayerMovment : MonoBehaviour
 {
-    public float Delay1 =9;
+
+    public float Delay1 = 9;
     public float speed;
     public float JumpHeight;
     private Rigidbody2D Rb;
     private float _movement;
-    private float direction=1;
+    private float direction = 1;
     public Vector2 boxsize;
     public float castDistance;
     public LayerMask groundLayer;
@@ -21,6 +22,7 @@ public class PlayerMovment : MonoBehaviour
     public GameObject dashEffect;
     public float dashCooldown;
     public bool HasDoubleJump = true;
+    public bool canDash = true;
 
     // grabs inital position
     private Vector2 InitialPos;
@@ -32,7 +34,8 @@ public class PlayerMovment : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
     }
-    /*private IEnumerator DelayedActionCoroutine(float delay1)
+
+    private IEnumerator DelayedActionCoroutine(float delay1)
     {
         Debug.Log("Waiting for " + delay1 + " seconds...");
 
@@ -43,11 +46,10 @@ public class PlayerMovment : MonoBehaviour
         Debug.Log("Delay finished! Action performed.");
         dashEffect.SetActive(false);
     }
-    */
+
     // Update is called once per frame
     void Update()
     {
-
 
         if (isDashing == false)
         {
@@ -66,39 +68,38 @@ public class PlayerMovment : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.Q) && canDash)
         {
             Rb.AddForce(new Vector2(dashForce * direction, 0f));
+            canDash = false;
             isDashing = true;
 
-            Invoke(nameof(EndDash), dashTime);
             if (direction == 1)
             {
                 dashEffect.transform.localPosition = new Vector3(-0.5f, -0.5f, 0f);
                 dashEffect.transform.rotation = Quaternion.Euler(0f, 0f, 135f);
+                StartCoroutine(DelayedActionCoroutine(4f));
             }
             else
             {
                 dashEffect.transform.localPosition = new Vector3(0.5f, -0.5f, 0f);
                 dashEffect.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
+                StartCoroutine(DelayedActionCoroutine(4f));
             }
+
+            Invoke(nameof(EndDash), dashTime);
+            Invoke(nameof(EndCooldown), dashTime + dashCooldown);
         }
     }
-        
-
-         
-
-    private void DashCooldown(float coolDown)
-    {
-        if (isDashing == false)
-        {
-            
-        }
-    }
-
+   
     private void EndDash()
     {
         isDashing = false;
+    }
+
+    public void EndCooldown()
+    {
+        canDash = true;
     }
 
     // Crontrolls the players horizontal movment
