@@ -23,6 +23,7 @@ public class PlayerMovment : MonoBehaviour
     public float dashCooldown;
     public bool HasDoubleJump = true;
     public bool canDash = true;
+    public Vector3 offset;
 
     // grabs inital position
     private Vector2 InitialPos;
@@ -140,7 +141,7 @@ public class PlayerMovment : MonoBehaviour
     // Check if the player is grounded using a boxcast
     public bool IsGrounded()
     {
-        if (Physics2D.BoxCast(transform.position, boxsize, 0, -transform.up, castDistance, groundLayer))
+        if (Physics2D.BoxCast(transform.position+offset, boxsize, 0, -transform.up, castDistance, groundLayer))
         {
             HasDoubleJump = true;
             return true;
@@ -160,15 +161,7 @@ public class PlayerMovment : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
-    }
-
-
-
-    void Reset()
-    {
-        transform.position = InitialPos;
-        transform.rotation = InitialRot;
+        Gizmos.DrawWireCube(transform.position+offset + Vector3.down * castDistance, boxsize);
     }
 
 
