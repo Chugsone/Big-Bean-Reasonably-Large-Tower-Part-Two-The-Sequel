@@ -24,6 +24,7 @@ public class PlayerMovment : MonoBehaviour
     public bool HasDoubleJump = true;
     public bool canDash = true;
     public Vector3 offset;
+    private Animator animator;
 
     // grabs inital position
     private Vector2 InitialPos;
@@ -33,6 +34,7 @@ public class PlayerMovment : MonoBehaviour
     private Quaternion InitialRot;  // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
     }
 
@@ -51,6 +53,7 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("HorizontalSpeed", _movement);
 
         if (isDashing == false)
         {
@@ -66,8 +69,7 @@ public class PlayerMovment : MonoBehaviour
             dashEffect.SetActive(true);
         }
 
-
-
+    
 
         if (Input.GetKeyDown(KeyCode.Q) && canDash)
         {
