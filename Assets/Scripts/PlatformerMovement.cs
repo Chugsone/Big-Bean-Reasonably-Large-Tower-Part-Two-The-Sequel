@@ -53,7 +53,17 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("HorizontalSpeed", _movement);
+        if (!IsGrounded())
+        {
+            animator.SetFloat("Grounded", 1);
+        }
+        else
+        {
+            animator.SetFloat("Grounded", -1);
+        }
+
+
+            animator.SetFloat("HorizontalSpeed", _movement);
 
         if (isDashing == false)
         {
@@ -124,14 +134,16 @@ public class PlayerMovment : MonoBehaviour
             if (IsGrounded())
             {
                 Rb.linearVelocityY = JumpHeight;
+                animator.SetTrigger("Jump");
             }
             if (!IsGrounded())
             {
                 if (HasDoubleJump ==true) 
     {
-        Rb.linearVelocityY = JumpHeight;
-        HasDoubleJump = false;
-    }
+                    Rb.linearVelocityY = JumpHeight;
+                    HasDoubleJump = false;
+                    
+                }
             }
         }
 
