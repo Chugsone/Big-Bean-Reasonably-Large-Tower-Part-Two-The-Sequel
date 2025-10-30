@@ -23,6 +23,8 @@ public class PlayerMovment : MonoBehaviour
     public float dashCooldown;
     public bool HasDoubleJump = true;
     public bool canDash = true;
+    public Vector3 offset;
+    private Animator animator;
 
     // grabs inital position
     private Vector2 InitialPos;
@@ -32,6 +34,7 @@ public class PlayerMovment : MonoBehaviour
     private Quaternion InitialRot;  // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
     }
 
@@ -50,6 +53,17 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsGrounded())
+        {
+            animator.SetFloat("Grounded", 1);
+        }
+        else
+        {
+            animator.SetFloat("Grounded", -1);
+        }
+
+
+            animator.SetFloat("HorizontalSpeed", _movement);
 
         if (isDashing == false)
         {
@@ -65,8 +79,7 @@ public class PlayerMovment : MonoBehaviour
             dashEffect.SetActive(true);
         }
 
-
-
+    
 
         if (Input.GetKeyDown(KeyCode.Q) && canDash)
         {
@@ -121,14 +134,16 @@ public class PlayerMovment : MonoBehaviour
             if (IsGrounded())
             {
                 Rb.linearVelocityY = JumpHeight;
+                animator.SetTrigger("Jump");
             }
             if (!IsGrounded())
             {
                 if (HasDoubleJump ==true) 
     {
-        Rb.linearVelocityY = JumpHeight;
-        HasDoubleJump = false;
-    }
+                    Rb.linearVelocityY = JumpHeight;
+                    HasDoubleJump = false;
+                    
+                }
             }
         }
 
@@ -140,7 +155,7 @@ public class PlayerMovment : MonoBehaviour
     // Check if the player is grounded using a boxcast
     public bool IsGrounded()
     {
-        if (Physics2D.BoxCast(transform.position, boxsize, 0, -transform.up, castDistance, groundLayer))
+        if (Physics2D.BoxCast(transform.position+offset, boxsize, 0, -transform.up, castDistance, groundLayer))
         {
             HasDoubleJump = true;
             return true;
@@ -160,15 +175,7 @@ public class PlayerMovment : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
-    }
-
-
-
-    void Reset()
-    {
-        transform.position = InitialPos;
-        transform.rotation = InitialRot;
+        Gizmos.DrawWireCube(transform.position+offset + Vector3.down * castDistance, boxsize);
     }
 
 
