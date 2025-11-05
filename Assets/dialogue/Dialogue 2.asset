@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d6031a964e28f4f85ffcd4336c69b2, type: 3}
+  m_Name: Dialogue 2
+  m_EditorClassIdentifier: 
+  dialogue:
+  - name: 'Pinto '
+    dialogue: These flags are Checkpoints!
+  - name: 'Pinto '
+    dialogue: 'Use spacebar to jump the gap '
+  - name: 'Pinto '
+    dialogue: Press space again in the air to Double Jump!
+  - name: 'Pinto '
+    dialogue: King Can hired some goons to stop you they are large and like to push
+      you out of the way jump over them to get through
+  - name: 'Pinto '
+    dialogue: They are large and like to push you out of the way
+  - name: 'Pinto '
+    dialogue: Jump over them to get through!

@@ -1,19 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using System.Collections;
 using UnityEngine.InputSystem;
-
-[Serializable] public struct DialoguePiece
-{
-    public string name;
-    [TextArea] public string dialogue;
-
-}
+using UnityEngine.Events;
 public class DieALog : MonoBehaviour
 {
-    
-    public List<DialoguePiece> dialogue;
+    private Dialogue dialogue;
+    public UnityEvent onStart, onEnd;
     public float textSpeed;
 
     public TMPro.TMP_Text dialogueName;
@@ -22,17 +15,21 @@ public class DieALog : MonoBehaviour
     private int dialogueIndex;
     private bool isDialogueRunning;
 
-    public void StartDialogue()
+    public void StartDialogue(Dialogue newDialogue)
     {
+        dialogue = newDialogue;
+
         me.SetActive(true);
         dialogueIndex = 0;
+        onStart.Invoke();
         Debug.Log("I am working. Hip hip hooray");
 
-        StartCoroutine(WriteDialoguePiece(dialogue[0]));
+        StartCoroutine(WriteDialoguePiece(dialogue.dialogue[0]));
     }
 
     public void StopDialogue()
     {
+        onEnd.Invoke();
         me.SetActive(false);
     }
 
@@ -43,12 +40,12 @@ public class DieALog : MonoBehaviour
 
         ++dialogueIndex;
 
-        if (dialogueIndex >= dialogue.Count)
+        if (dialogueIndex >= dialogue.dialogue.Count)
         {
             StopDialogue();
             return;
         }
-        StartCoroutine(WriteDialoguePiece(dialogue[dialogueIndex]));
+        StartCoroutine(WriteDialoguePiece(dialogue.dialogue[dialogueIndex]));
     }
 
 
