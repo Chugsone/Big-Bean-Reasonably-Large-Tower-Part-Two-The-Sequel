@@ -9,7 +9,7 @@ public class BouncePad : MonoBehaviour
        if (other.CompareTag("Player"))
        {
             Debug.Log("BouncePad activated!");
-            other.GetComponent<Rigidbody2D>().linearVelocityY += 40f;
+            other.GetComponent<Rigidbody2D>().linearVelocityY += 30f;
         }
     }
 

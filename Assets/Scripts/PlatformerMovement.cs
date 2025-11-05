@@ -83,6 +83,7 @@ public class PlayerMovment : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && canDash)
         {
+            transform.rotation = direction == 1 ? Quaternion.Euler(0f, 0f, 270f): Quaternion.Euler(0f, 0f, 90f);
             Rb.AddForce(new Vector2(dashForce * direction, 0f));
             canDash = false;
             isDashing = true;
@@ -107,6 +108,7 @@ public class PlayerMovment : MonoBehaviour
    
     private void EndDash()
     {
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         isDashing = false;
     }
 
