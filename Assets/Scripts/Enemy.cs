@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // Is Grounded
-        isGrounded  = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
+        isGrounded  = Physics2D.Raycast(transform.position, Vector2.down, transform.localScale.y/2+0.1f, groundLayer);
         // Player Direction
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         // Player above detection
