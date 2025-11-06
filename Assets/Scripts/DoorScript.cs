@@ -7,6 +7,7 @@ public class DoorScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Vector2 boxsize;
     private bool isOpen = false;
+    [SerializeField] private GameObject KingCan;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,7 @@ public class DoorScript : MonoBehaviour
         {
             if (Vector2.Distance(transform.position,closedPosition)>0.1f)
             {
+                KingCan.SetActive(true);
                 transform.position = Vector2.MoveTowards(transform.position, closedPosition, 5f * Time.deltaTime);
             }
         }

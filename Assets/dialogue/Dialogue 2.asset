@@ -20,8 +20,7 @@ MonoBehaviour:
   - name: 'Pinto '
     dialogue: Press space again in the air to Double Jump!
   - name: 'Pinto '
-    dialogue: King Can hired some goons to stop you they are large and like to push
-      you out of the way jump over them to get through
+    dialogue: King Can hired some goons to stop you
   - name: 'Pinto '
     dialogue: They are large and like to push you out of the way
   - name: 'Pinto '
